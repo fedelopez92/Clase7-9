@@ -8,6 +8,7 @@ public class Persona {
 
     private String nombre;
     private String apellido;
+    private String numero;
 
     public String getNombre(){
         return this.nombre;
@@ -25,8 +26,17 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    public Persona(String nombre, String apellido){
+    public String getNumero(){
+        return this.numero;
+    }
+
+    public void setNumero(String numero){
+        this.numero = numero;
+    }
+
+    public Persona(String nombre, String apellido, String numero){
         this.nombre = nombre;
         this.apellido = apellido;
+        this.numero = numero;
     }
 }
