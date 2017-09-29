@@ -17,16 +17,17 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
 
     public MyViewHolder(View itemView, OnItemClickListener onItemClickListener) {
         super(itemView);
-        v = itemView;
-        v.setOnClickListener(this);
+        tvnombre = (TextView) itemView.findViewById(R.id.textView1);
+        tvapellido = (TextView) itemView.findViewById((R.id.textView2));
+        itemView.setOnClickListener(this);
         this.onItemClickListener = onItemClickListener;
 
-        tvnombre = (TextView) v.findViewById(R.id.textView1);
-        tvapellido = (TextView) v.findViewById((R.id.textView2));
+
     }
 
     @Override
     public void onClick(View v) {
-        this.onItemClickListener.onClick(v, getAdapterPosition());
+
+        this.onItemClickListener.onClick(getAdapterPosition());
     }
 }

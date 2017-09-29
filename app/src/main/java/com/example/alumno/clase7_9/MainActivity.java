@@ -16,25 +16,17 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnItemClickListener {
 
-    List<Persona> personas = new ArrayList<Persona>();
     private static final int PERMISO_REQUERIDO = 100;
 
-    RecyclerView.Adapter adapter = new MyAdapter(personas, new OnItemClickListener() {
-        @Override
-        public void onClick(View v, int posicion) {
+    public List<Persona> personas;
+    public RecyclerView.Adapter adapter;
 
-            //Log.d("Click item", "se hizo click en " + personas.get(posicion).getNombre() + " " + personas.get(posicion).getApellido());
-
-            if(personas.get(posicion).getNombre().equals("Pablo") && personas.get(posicion).getApellido().equals("Speranza")){
-                agregarPersona();
-            }
-
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+personas.get(posicion).getNumero()));
-            startActivity(intent);
-        }
-    });
+    public MainActivity(){
+        this.personas = new ArrayList<Persona>();
+        this.adapter = new MyAdapter(personas, this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +63,18 @@ public class MainActivity extends AppCompatActivity {
         rvPersonas.setLayoutManager(layout);
     }
 
-    /*public void clickEnElItem(int i){
+    @Override
+    public void onClick(int posicion) {
 
-        Log.d("Click item", "se hizo click en" + personas.get(i).getApellido());
+        //Log.d("Click item", "se hizo click en " + personas.get(posicion).getNombre() + " " + personas.get(posicion).getApellido());
 
-        agregarPersona();
-        adapter.notifyDataSetChanged();
-    }*/
+        if(personas.get(posicion).getNombre().equals("Pablo") && personas.get(posicion).getApellido().equals("Speranza")){
+            agregarPersona();
+        }
+
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+personas.get(posicion).getNumero()));
+        startActivity(intent);
+    }
 
     public void agregarPersona(){
 
